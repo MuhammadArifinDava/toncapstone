@@ -1,7 +1,6 @@
-import React from 'react'
+import React from "react";
 
 export const server = () => {
-  return (
-    <div>server</div>
-  )
-}
+	return <div>server</div>;
+	// DAVAAWJFASLKJFLKJAFLKJADKFf
+};
