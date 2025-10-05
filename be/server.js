@@ -4,4 +4,5 @@ export const server = () => {
   return (
     <div>server</div>
   )
+  // asade konmtol anjing meke babi
 }
