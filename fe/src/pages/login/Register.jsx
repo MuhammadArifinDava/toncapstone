@@ -1,26 +1,44 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Register() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   async function onSubmit(e) {
     e.preventDefault();
+    if (password !== confirm) {
+      alert("Konfirmasi kata sandi tidak cocok");
+      return;
+    }
+
     setLoading(true);
-    // simulasi login
+    // simulasi register
     setTimeout(() => {
       setLoading(false);
-      navigate("/register"); // contoh redirect
+      alert("Registrasi berhasil, silakan login");
+      navigate("/login");
     }, 800);
   }
 
   return (
     <div className="container" style={{ maxWidth: 480 }}>
       <form className="form card" onSubmit={onSubmit}>
-      <h2>LOGIN</h2>
+      <h2>REGISTER</h2>
+        <label htmlFor="name">Nama</label>
+        <input
+          id="name"
+          type="text"
+          className="input"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+
         <label htmlFor="email">Email</label>
         <input
           id="email"
@@ -31,7 +49,7 @@ export default function Login() {
           required
         />
 
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">Kata Sandi</label>
         <input
           id="password"
           type="password"
@@ -41,11 +59,21 @@ export default function Login() {
           required
         />
 
+        <label htmlFor="confirm">Konfirmasi Kata Sandi</label>
+        <input
+          id="confirm"
+          type="password"
+          className="input"
+          value={confirm}
+          onChange={(e) => setConfirm(e.target.value)}
+          required
+        />
+
         <button className="button primary" disabled={loading}>
-          {loading ? "Loading..." : "Login"}
+          {loading ? "Loading..." : "Register"}
         </button>
         <p className="small">
-          Belum punya akun? <Link to="/register">Register</Link>
+          Sudah punya akun? <Link to="/index.jsx">Login</Link>
         </p>
       </form>
     </div>
